@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>#roomInfo{
+			width: 100%;
+			height: 100px;
+			overflow-y: scroll;
+			word-break: break-all;
+			font-size: 12px;
+			border: 1px dashed forestgreen;
+			margin-bottom: 10px;
+		}
+		.videoPlayer{
+			width: 200px;
+			height: 150px;
+			background-color: #eee;
+			margin-bottom: 10px;
+		}
+		h4{
+			margin: 0;
+			padding: 0;
+		}
+		#localStream{margin-bottom: 10px;display: block;}
+		#roomList video{margin-right: 10px;border: 3px solid green}
+</style>
+</head>
+<body>
+
+	<div id="roomInfo"></div>
+	<button id="joinRoom">加入房间</button>  <button id="exitRoom">退出房间</button>  <button id="changeCamera">切换摄像头</button>
+	<br>
+	<br>
+	<h4>我</h4>
+	<hr>
+	<div class="videoPlayer"><video width="200" height="150" id="localStream"></video></div>
+	<h4>其他成员</h4>
+	<hr>
+	<div id="roomList">
+	</div>
+
+	<script src="/index.3fafb3e2.js"></script>
+
+</body>
+</html>
