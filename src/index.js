@@ -123,17 +123,18 @@ function initEmedia(username, token){
 
 $("#joinRoom").addEventListener("click", function(){
 	emedia.mgr.joinRoom(params).then(res => {
+		const roomInfo = res.ticket
 		const constaints = { // 发布音频流的配置参数, Object 必需。 video或audio属性 至少存在一个
 			audio: true, // 是否发布音频
 			video: true  // 是否发布视频
 		}
 		const ext = {} // 发布流的扩展信息 Object 非必需。会议其他成员可接收到
 		const videoTag = $('#localStream') //需要显示本地流的 video 标签
-		emedia.mgr.publish(constaints, ext).then(pushedStream => {
-			emedia.mgr.streamBindVideo(pushedStream, videoTag);
-		})
 		roomData = res
-		$("#roomInfo").innerText = JSON.stringify(res)
+		$("#roomInfo").innerText = roomInfo.replaceAll('\\', '');
+		emedia.mgr.publish(constaints, ext).then(pushedStream => {
+			emedia.mgr.streamBindVideo(pushedStream, videoTag)
+		})
 	})
 })
 

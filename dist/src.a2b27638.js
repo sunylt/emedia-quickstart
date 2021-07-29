@@ -53672,6 +53672,7 @@ function initEmedia(username, token) {
 
 $("#joinRoom").addEventListener("click", function () {
   _EMedia_sdk.default.mgr.joinRoom(params).then(function (res) {
+    var roomInfo = res.ticket;
     var constaints = {
       // 发布音频流的配置参数, Object 必需。 video或audio属性 至少存在一个
       audio: true,
@@ -53683,12 +53684,12 @@ $("#joinRoom").addEventListener("click", function () {
 
     var videoTag = $('#localStream'); //需要显示本地流的 video 标签
 
+    roomData = res;
+    $("#roomInfo").innerText = roomInfo.replaceAll('\\', '');
+
     _EMedia_sdk.default.mgr.publish(constaints, ext).then(function (pushedStream) {
       _EMedia_sdk.default.mgr.streamBindVideo(pushedStream, videoTag);
     });
-
-    roomData = res;
-    $("#roomInfo").innerText = JSON.stringify(res);
   });
 });
 $("#exitRoom").addEventListener("click", function () {
@@ -53725,7 +53726,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59999" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60180" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
