@@ -131,9 +131,12 @@ $("#joinRoom").addEventListener("click", function(){
 		const ext = {} // 发布流的扩展信息 Object 非必需。会议其他成员可接收到
 		const videoTag = $('#localStream') //需要显示本地流的 video 标签
 		roomData = res
-		$("#roomInfo").innerText = roomInfo.replaceAll('\\', '');
+		$("#roomInfo").innerText = roomInfo.replaceAll('\\', '');	
 		emedia.mgr.publish(constaints, ext).then(pushedStream => {
 			emedia.mgr.streamBindVideo(pushedStream, videoTag)
+		}).catch(e => {
+			console.log("error=>=>", e)
+			emedia.mgr.exitConference()
 		})
 	})
 })

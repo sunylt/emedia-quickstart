@@ -53689,6 +53689,10 @@ $("#joinRoom").addEventListener("click", function () {
 
     _EMedia_sdk.default.mgr.publish(constaints, ext).then(function (pushedStream) {
       _EMedia_sdk.default.mgr.streamBindVideo(pushedStream, videoTag);
+    }).catch(function (e) {
+      console.log("error=>=>", e);
+
+      _EMedia_sdk.default.mgr.exitConference();
     });
   });
 });
@@ -53726,7 +53730,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60180" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62775" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
