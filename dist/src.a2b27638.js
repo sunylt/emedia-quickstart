@@ -53533,7 +53533,7 @@ _EMedia_sdk.default.config({
   appkey: APP_KEY,
   isHttpDNS: false,
   restPrefix: RTC_SERVER,
-  uploadStats: false,
+  uploadStats: true,
   consoleLogger: false // restPrefix: "http://172.16.163.132:12001"
   // useDeployMore:true //开启多集群部署
 
@@ -53633,6 +53633,12 @@ function initEmedia(username, token) {
 
       _EMedia_sdk.default.mgr.subscribe(member, stream, true, true, videoTag);
     }
+
+    if (stream.type == 1) {
+      // emedia.mgr.subscribe(member, stream, true, true, )
+      $("#desktopVideo").srcObject = stream.getMediaStream();
+      $("#desktopVideo").play();
+    }
   };
 
   _EMedia_sdk.default.mgr.onStreamRemoved = function (member, stream) {
@@ -53702,6 +53708,13 @@ $("#exitRoom").addEventListener("click", function () {
 $("#changeCamera").addEventListener("click", function () {
   roomData && _EMedia_sdk.default.mgr.switchMobileCamera(roomData.confrId);
 });
+$("#shareDesktop").addEventListener("click", function () {
+  _EMedia_sdk.default.mgr.shareDesktopWithAudio({
+    confrId: roomData.confrId,
+    audio: false,
+    videoTag: $("#desktopVideo")
+  });
+});
 },{"./sdk/EMedia_sdk-3.4.1":"src/sdk/EMedia_sdk-3.4.1.js"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -53730,7 +53743,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62775" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56027" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

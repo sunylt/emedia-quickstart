@@ -87,6 +87,11 @@ function initEmedia(username, token){
 			const videoTag = document.querySelector("#" + member.id)	
 			emedia.mgr.subscribe(member, stream, true, true, videoTag) 
 		}
+		if(stream.type == 1){
+			// emedia.mgr.subscribe(member, stream, true, true, )
+			$("#desktopVideo").srcObject = stream.getMediaStream();
+			$("#desktopVideo").play();
+		}
 	};
 	emedia.mgr.onStreamRemoved = function (member, stream) {
 		console.log('onStreamRemoved >>>',member,stream)
@@ -149,5 +154,13 @@ $("#changeCamera").addEventListener("click", function(){
 	roomData && emedia.mgr.switchMobileCamera(roomData.confrId)
 })
 
+
+$("#shareDesktop").addEventListener("click", function(){
+	emedia.mgr.shareDesktopWithAudio({
+		confrId: roomData.confrId,
+		audio: false,
+		videoTag: $("#desktopVideo")
+	})
+})
 
 

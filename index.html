@@ -32,12 +32,15 @@
 <body>
 
 	<div id="roomInfo"></div>
-	<button id="joinRoom">加入房间</button>  <button id="exitRoom">退出房间</button>  <button id="changeCamera">切换摄像头</button>
+	<button id="joinRoom">加入房间</button>  <button id="exitRoom">退出房间</button>  <button id="changeCamera">切换摄像头</button><button id="shareDesktop">共享桌面</button>
 	<br />
 	<br />
 	<h4>我</h4>
 	<hr />
-	<div class="videoPlayer"><video width="200" height="150" id="localStream"></video></div>
+	<div class="videoPlayer">
+		<video width="200" height="150" id="localStream"></video>
+		<video width="200" height="150" id="desktopVideo"></video>
+	</div>
 	<h4>其他成员</h4>
 	<hr />
 	<div id="roomList">
